@@ -40,3 +40,19 @@ salesRep1.addClient(customer1);          //Add client under sales rep
 console.log(`New Sales Rep Created: ${salesRep1.name}`); 
 console.log(`${salesRep1.name}'s Clients: ${salesRep1.clients.map(client => client.name)}`);
 console.log(`Total Spent by ${customer1.name} is $${salesRep1.getClientTotal("John Rambo")}`); //make sure there is no leading space in name or will error
+
+//Task 3: Create a VIP Customer Class - extends Customer
+class VIPCustomer extends Customer {
+    constructor(name, email, vipLevel) {  //includes all this
+        super(name, email);
+        this.vipLevel = vipLevel; };
+getTotalSpent() {                    //Overide the getTotalSpent() method to return total spent including 10% loyalty bonus added
+        const totalSpent = super.getTotalSpent();
+        return totalSpent * 1.1; // 10% loyalty bonus
+     };
+};
+//VIP customer's total spent with bonus
+const vipCustomer1 = new VIPCustomer("Dave Bogner", "dave123bogner@gmail.com","Gold"); //Create a new VIP customer - have gold & platinum levels
+vipCustomer1.addPurchase(200);   //lot of zeros after 220 in console
+console.log(`New VIP Customer created: ${vipCustomer1.name} (${vipCustomer1.vipLevel})`); 
+console.log(`Total Spent by ${vipCustomer1.name} (VIP ${vipCustomer1.vipLevel}) was $${vipCustomer1.getTotalSpent()}`); 
